@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\API\MessageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\ProjectController;
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 /* Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 }); */
+
 
 Route::group([
     'middleware' => 'api',
@@ -39,7 +41,9 @@ Route::middleware("auth:api")->group(function () {
 
 
     /* Routes For ProjectController */
-
+    Route::post('projects', [ProjectController::class, 'store']);
+    Route::post('projects/{project}', [ProjectController::class, 'update']);
+    Route::delete('projects/{project}', [ProjectController::class, 'destroy']);
 
 
 
@@ -47,4 +51,7 @@ Route::middleware("auth:api")->group(function () {
 
 /* Route For MessageController  " StoreMessage */
 Route::post('/message',[MessageController::class, 'store']);
+
+Route::get('projects', [ProjectController::class, 'index']);
+Route::get('projects/{project}', [ProjectController::class, 'show']);
 
