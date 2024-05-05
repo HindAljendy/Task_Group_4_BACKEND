@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\MessageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+/* Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+}); */
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/logout', [AuthController::class, 'logout'])->middleware("auth:api");
+    Route::post('/refresh', [AuthController::class, 'refresh'])->middleware("auth:api");
+    Route::get('/user-profile', [AuthController::class, 'userProfile'])->middleware("auth:api");
 });
+
+Route::middleware("auth:api")->group(function () {
+
+    /* Routes For MessageController  "ShowMessages and delete */
+    Route::get('/message',[MessageController::class, 'index']);
+    Route::get('/message/{message}',[MessageController::class, 'show']);
+    Route::delete('/message/{message}',[MessageController::class, 'destroy']);
+
+
+    /* Routes For ProjectController */
+
+
+
+
+});
+
+/* Route For MessageController  " StoreMessage */
+Route::post('/message',[MessageController::class, 'store']);
+
