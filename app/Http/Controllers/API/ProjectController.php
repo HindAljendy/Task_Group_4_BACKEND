@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\ApiResponseTrait;
+use App\Http\Traits\ImageTrait;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
+    use ImageTrait, ApiResponseTrait;
     /**
      * Display a listing of the resource.
      */
