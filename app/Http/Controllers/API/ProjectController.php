@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Traits\ImageTrait;
@@ -63,7 +64,7 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         try {
-            return $this->responseJson(new ProjectResource($project), 'Show Success', 200);
+            return $this->customeResponse(new ProjectResource($project), 'Show Success', 200);
         } catch (\Throwable $th) {
             Log::error($th);
             return $this->customeResponse(null, 'Show Failed', 500);
