@@ -22,37 +22,36 @@ use App\Http\Controllers\API\MessageController;
 }); */
 
 
-// Route::group([
-//     'middleware' => 'api',
-//     'prefix' => 'auth'
-// ], function ($router) {
-//     Route::post('/login', [AuthController::class, 'login']);
-//     Route::post('/logout', [AuthController::class, 'logout'])->middleware("auth:api");
-//     Route::post('/refresh', [AuthController::class, 'refresh'])->middleware("auth:api");
-//     Route::get('/user-profile', [AuthController::class, 'userProfile'])->middleware("auth:api");
-// });
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/logout', [AuthController::class, 'logout'])->middleware("auth:api");
+    Route::post('/refresh', [AuthController::class, 'refresh'])->middleware("auth:api");
+    Route::get('/user-profile', [AuthController::class, 'userProfile'])->middleware("auth:api");
+});
 
-// Route::middleware("auth:api")->group(function () {
+Route::middleware("auth:api")->group(function () {
 
-//     /* Routes For MessageController  "ShowMessages and delete */
-//     Route::get('/message',[MessageController::class, 'index']);
-//     Route::get('/message/{message}',[MessageController::class, 'show']);
-//     Route::delete('/message/{message}',[MessageController::class, 'destroy']);
-
-
-//     /* Routes For ProjectController */
+    /* Routes For MessageController  "ShowMessages and delete */
+    Route::get('/message',[MessageController::class, 'index']);
+    Route::get('/message/{message}',[MessageController::class, 'show']);
+    Route::delete('/message/{message}',[MessageController::class, 'destroy']);
 
 
+    /* Routes For ProjectController */
+    Route::post('projects', [ProjectController::class, 'store']);
+    Route::post('projects/{project}', [ProjectController::class, 'update']);
+    Route::delete('projects/{project}', [ProjectController::class, 'destroy']);
 
 
-// });
+
+});
 
 /* Route For MessageController  " StoreMessage */
 Route::post('/message',[MessageController::class, 'store']);
 
 Route::get('projects', [ProjectController::class, 'index']);
-Route::post('projects', [ProjectController::class, 'store']);
 Route::get('projects/{project}', [ProjectController::class, 'show']);
-Route::post('projects/{project}', [ProjectController::class, 'update']);
-Route::delete('projects/{project}', [ProjectController::class, 'destroy']);
 
