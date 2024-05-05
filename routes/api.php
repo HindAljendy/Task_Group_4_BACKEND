@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\API\MessageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,4 +48,10 @@ Route::middleware("auth:api")->group(function () {
 
 /* Route For MessageController  " StoreMessage */
 Route::post('/message',[MessageController::class, 'store']);
+
+Route::get('projects', [ProjectController::class, 'index']);
+Route::post('projects', [ProjectController::class, 'store']);
+Route::get('projects/{project}', [ProjectController::class, 'show']);
+Route::post('projects/{project}', [ProjectController::class, 'update']);
+Route::delete('projects/{project}', [ProjectController::class, 'destroy']);
 
