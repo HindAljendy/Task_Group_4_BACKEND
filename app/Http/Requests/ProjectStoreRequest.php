@@ -22,11 +22,11 @@ class ProjectStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:150',
-            'description' => 'required|string|max:500',
-            'year' => 'nullable|digits:4|integer|min:1900',
-            'image' => 'nullable|mimes:png,jpg,jpeg,gif',
-            'category' => 'nullable|string|max:100',
+            'title'            => 'required|string|max:150',
+            'description'      => 'required|string|max:500',
+            'year'             => 'nullable|digits:4|integer|min:1900',
+            'image'            => 'nullable|mimes:png,jpg,jpeg,gif',
+            'category'         => 'nullable|string|max:100',
         ];
     }
 }

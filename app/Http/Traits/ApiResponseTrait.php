@@ -8,8 +8,8 @@ trait ApiResponseTrait
 
     public function customeResponse($data, $message, $status) {
         $array = [
-            'data'  =>$data,
-            'message'=>$message
+            'data'     =>$data,
+            'message'  =>$message
         ];
 
         return response()->json($array, $status);

@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ProjectController;
 use App\Http\Controllers\API\AuthController;
@@ -52,6 +51,8 @@ Route::middleware("auth:api")->group(function () {
 /* Route For MessageController  " StoreMessage */
 Route::post('/message',[MessageController::class, 'store']);
 
+
+/* Route For ProjectController  " ViewProjects */
 Route::get('projects', [ProjectController::class, 'index']);
 Route::get('projects/{project}', [ProjectController::class, 'show']);
 
