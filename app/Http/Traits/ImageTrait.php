@@ -26,7 +26,7 @@ trait ImageTrait
     // this function delete image from directory
     public function deleteImage($image, $directory)
     {
-        $old_image = $directory . $image;
+        $old_image =$directory . $image;
         unlink($old_image);
     }
 }
